@@ -30,7 +30,7 @@ version 20160422
     <script>
         window.onload = function () {
 
-            <!-- variables and elements -->
+            /* variables and elements */
             t1 = 0; t2 = 95; t3 = 150; r1 = 326300; r2 = 7707; r3 = 1747; ri = 7707; ti = 95;
             var T1 = document.getElementById("t1");
             var T2 = document.getElementById("t2");
@@ -41,19 +41,19 @@ version 20160422
             var Ti = document.getElementById("ti");
             var Ri = document.getElementById("ri");
 
-< !--setup values-- >
-                document.getElementById("t1").value=t1;
-            document.getElementById("t2").value = t2;
-            document.getElementById("t3").value = t3;
-            document.getElementById("r1").value = r1;
-            document.getElementById("r2").value = r2;
-            document.getElementById("r3").value = r3;
-            document.getElementById("ri").value = ri;
-            document.getElementById("ti").value = ti;
-            calculate();
-
-< !--events -->
-                T1.onkeyup = function() { t1 = Number(document.getElementById("t1").value); calculate(); }
+            /* setup values */
+                            document.getElementById("t1").value=t1;
+                        document.getElementById("t2").value = t2;
+                        document.getElementById("t3").value = t3;
+                        document.getElementById("r1").value = r1;
+                        document.getElementById("r2").value = r2;
+                        document.getElementById("r3").value = r3;
+                        document.getElementById("ri").value = ri;
+                        document.getElementById("ti").value = ti;
+                        calculate();
+            
+            /* events */
+            T1.onkeyup = function () { t1 = Number(document.getElementById("t1").value); calculate(); }
             T2.onkeyup = function () { t2 = Number(document.getElementById("t2").value); calculate(); }
             T3.onkeyup = function () { t3 = Number(document.getElementById("t3").value); calculate(); }
             R1.onkeyup = function () { r1 = Number(document.getElementById("r1").value); calculate(); }
@@ -63,7 +63,7 @@ version 20160422
             Ri.onkeyup = function () { ri = Number(document.getElementById("ri").value); calculate(); }
 
         }
-            < !--calculation part ->
+            /* calculation part */
                 function calculate() {
                     var l1 = Math.log(r1);
                     var l2 = Math.log(r2);
