@@ -4,124 +4,142 @@ Copyright © 2016 by Arthur Wong Shui Wah
 No part of this work may be directly copied for any forms of educational or business works.
 Yet reading and understanding the logic and then reproduce is accetable.
 -->
- 
+
 <!--
 Written by Arthur Wong Shui Wah
 version 20160422
 -->
 
 <html>
+
 <head>
-<style>
-.title {font-size:30px}
-td {text-align:left; padding:5px}
-input {width:100%}
-</style>
-<script>
-window.onload = function(){
+    <style>
+        .title {
+            font-size: 30px
+        }
 
-<!-- variables and elements -->
-t1=0;t2=95;t3=150;r1=326300;r2=7707;r3=1747;ri=7707;ti=95;
-var T1 = document.getElementById("t1");
-var T2 = document.getElementById("t2");
-var T3 = document.getElementById("t3");
-var R1 = document.getElementById("r1");
-var R2 = document.getElementById("r2");
-var R3 = document.getElementById("r3");
-var Ti = document.getElementById("ti");
-var Ri = document.getElementById("ri");
+        td {
+            text-align: left;
+            padding: 5px
+        }
 
-<!-- setup values -->
-document.getElementById("t1").value=t1;
-document.getElementById("t2").value=t2;
-document.getElementById("t3").value=t3;
-document.getElementById("r1").value=r1;
-document.getElementById("r2").value=r2;
-document.getElementById("r3").value=r3;
-document.getElementById("ri").value=ri;
-document.getElementById("ti").value=ti;
-calculate();
+        input {
+            width: 100%
+        }
+    </style>
+    <script>
+        window.onload = function () {
 
-<!-- events -->
-T1.onkeyup = function(){t1=Number(document.getElementById("t1").value);calculate();}
-T2.onkeyup = function(){t2=Number(document.getElementById("t2").value);calculate();}
-T3.onkeyup = function(){t3=Number(document.getElementById("t3").value);calculate();}
-R1.onkeyup = function(){r1=Number(document.getElementById("r1").value);calculate();}
-R2.onkeyup = function(){r2=Number(document.getElementById("r2").value);calculate();}
-R3.onkeyup = function(){r3=Number(document.getElementById("r3").value);calculate();}
-Ti.onkeyup = function(){ti=Number(document.getElementById("ti").value);calculate();}
-Ri.onkeyup = function(){ri=Number(document.getElementById("ri").value);calculate();}
+            <!-- variables and elements -->
+            t1 = 0; t2 = 95; t3 = 150; r1 = 326300; r2 = 7707; r3 = 1747; ri = 7707; ti = 95;
+            var T1 = document.getElementById("t1");
+            var T2 = document.getElementById("t2");
+            var T3 = document.getElementById("t3");
+            var R1 = document.getElementById("r1");
+            var R2 = document.getElementById("r2");
+            var R3 = document.getElementById("r3");
+            var Ti = document.getElementById("ti");
+            var Ri = document.getElementById("ri");
 
-}
-<!-- calculation part ->
-function calculate(){
-var l1 = Math.log(r1);
-var l2 = Math.log(r2);
-var l3 = Math.log(r3);
-var y1 = 1/(t1+273.15);
-var y2 = 1/(t2+273.15);
-var y3 = 1/(t3+273.15);
-var g2 = (y2-y1)/(l2-l1);
-var g3 = (y3-y1)/(l3-l1);
-var c = ((g3-g2)/(l3-l2))*(Math.pow((l1+l2+l3),-1));
-var b = g2-c*(Math.pow(l1,2)+l1*l2+Math.pow(l2,2));
-var a = y1-(b+Math.pow(l1,2)*c)*l1;
-var to = 1/(a+b*Math.log(ri)+c*Math.pow(Math.log(ri),3));
-var x = (1/c)*(a-1/(ti+273.15));
-var y = Math.pow(Math.pow(b/(3*c),3)+Math.pow(x/2,2),1/2);
-var ro = Math.exp(Math.pow(y-x/2,1/3)-Math.pow(y+x/2,1/3));
-document.getElementById("to").innerHTML = Math.round((to+0.00001-273.15)*100)/100;
-document.getElementById("ro").innerHTML = Math.round((ro+0.00001)*100)/100.0;
-}
-</script>
+< !--setup values-- >
+                document.getElementById("t1").value=t1;
+            document.getElementById("t2").value = t2;
+            document.getElementById("t3").value = t3;
+            document.getElementById("r1").value = r1;
+            document.getElementById("r2").value = r2;
+            document.getElementById("r3").value = r3;
+            document.getElementById("ri").value = ri;
+            document.getElementById("ti").value = ti;
+            calculate();
+
+< !--events -->
+                T1.onkeyup = function() { t1 = Number(document.getElementById("t1").value); calculate(); }
+            T2.onkeyup = function () { t2 = Number(document.getElementById("t2").value); calculate(); }
+            T3.onkeyup = function () { t3 = Number(document.getElementById("t3").value); calculate(); }
+            R1.onkeyup = function () { r1 = Number(document.getElementById("r1").value); calculate(); }
+            R2.onkeyup = function () { r2 = Number(document.getElementById("r2").value); calculate(); }
+            R3.onkeyup = function () { r3 = Number(document.getElementById("r3").value); calculate(); }
+            Ti.onkeyup = function () { ti = Number(document.getElementById("ti").value); calculate(); }
+            Ri.onkeyup = function () { ri = Number(document.getElementById("ri").value); calculate(); }
+
+        }
+            < !--calculation part ->
+                function calculate() {
+                    var l1 = Math.log(r1);
+                    var l2 = Math.log(r2);
+                    var l3 = Math.log(r3);
+                    var y1 = 1 / (t1 + 273.15);
+                    var y2 = 1 / (t2 + 273.15);
+                    var y3 = 1 / (t3 + 273.15);
+                    var g2 = (y2 - y1) / (l2 - l1);
+                    var g3 = (y3 - y1) / (l3 - l1);
+                    var c = ((g3 - g2) / (l3 - l2)) * (Math.pow((l1 + l2 + l3), -1));
+                    var b = g2 - c * (Math.pow(l1, 2) + l1 * l2 + Math.pow(l2, 2));
+                    var a = y1 - (b + Math.pow(l1, 2) * c) * l1;
+                    var to = 1 / (a + b * Math.log(ri) + c * Math.pow(Math.log(ri), 3));
+                    var x = (1 / c) * (a - 1 / (ti + 273.15));
+                    var y = Math.pow(Math.pow(b / (3 * c), 3) + Math.pow(x / 2, 2), 1 / 2);
+                    var ro = Math.exp(Math.pow(y - x / 2, 1 / 3) - Math.pow(y + x / 2, 1 / 3));
+                    document.getElementById("to").innerHTML = Math.round((to + 0.00001 - 273.15) * 100) / 100;
+                    document.getElementById("ro").innerHTML = Math.round((ro + 0.00001) * 100) / 100.0;
+                }
+    </script>
 </head>
+
 <body>
-<h1><u>Steinhart-Hart Equation Calculator</u></h1>
-<div>
-<table>
-<tr><td class = "title" colspan = 3>Three points temperature and resistence</td></tr>
-<tr>
-<td>Lower bound:</td>
-<td>T1(&#176;C):<br/><input id="t1"/></td>
-<td>R1(&#937):<br/><input id="r1"/></td>
-</tr>
-<tr>
-<td>Working point:</td>
-<td>T2(&#176;C):<br/><input id="t2"/></td>
-<td>R2(&#937;):<br/><input id="r2"/></td>
-</tr>
-<tr>
-<td>Upper bound:</td>
-<td>T3(&#176;C):<br/><input id="t3"/></td>
-<td>R3(&#937;):<br/><input id="r3"/></td>
-</tr>
-</table>
-<br/>
-</div>
-<div>
-<table>
-<tr>
-<td class ="title" colspan = 3>Resistance to Temperature</td>
-</tr>
-<tr>
-<td>Known resistance(&#937;):&nbsp;</td>
-<td><input id="ri"/></td>
-</tr>
-<tr>
-<td>Corresponding temperature(&#176;C):&nbsp;&nbsp;&nbsp;</td>
-<td id="to"></td>
-</tr>
-<tr><td colspan =3><br/></td></tr>
-<tr><td class ="title" colspan = 3>Temperature to Resistance</td></tr>
-<tr>
-<td>Known temperature(&#176;C):&nbsp;</td>
-<td><input id="ti"/></td>
-</tr>
-<tr>
-<td>Corresponding resistance(&#937;):&nbsp;&nbsp;&nbsp;</td>
-<td><span id="ro"/></td>
-</tr>
-</table>
-</div>
+    <h1><u>Steinhart-Hart Equation Calculator</u></h1>
+    <div>
+        <table>
+            <tr>
+                <td class="title" colspan=3>Three points temperature and resistence</td>
+            </tr>
+            <tr>
+                <td>Lower bound:</td>
+                <td>T1(&#176;C):<br /><input id="t1" /></td>
+                <td>R1(&#937):<br /><input id="r1" /></td>
+            </tr>
+            <tr>
+                <td>Working point:</td>
+                <td>T2(&#176;C):<br /><input id="t2" /></td>
+                <td>R2(&#937;):<br /><input id="r2" /></td>
+            </tr>
+            <tr>
+                <td>Upper bound:</td>
+                <td>T3(&#176;C):<br /><input id="t3" /></td>
+                <td>R3(&#937;):<br /><input id="r3" /></td>
+            </tr>
+        </table>
+        <br />
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="title" colspan=3>Resistance to Temperature</td>
+            </tr>
+            <tr>
+                <td>Known resistance(&#937;):&nbsp;</td>
+                <td><input id="ri" /></td>
+            </tr>
+            <tr>
+                <td>Corresponding temperature(&#176;C):&nbsp;&nbsp;&nbsp;</td>
+                <td id="to"></td>
+            </tr>
+            <tr>
+                <td colspan=3><br /></td>
+            </tr>
+            <tr>
+                <td class="title" colspan=3>Temperature to Resistance</td>
+            </tr>
+            <tr>
+                <td>Known temperature(&#176;C):&nbsp;</td>
+                <td><input id="ti" /></td>
+            </tr>
+            <tr>
+                <td>Corresponding resistance(&#937;):&nbsp;&nbsp;&nbsp;</td>
+                <td><span id="ro" /></td>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>
